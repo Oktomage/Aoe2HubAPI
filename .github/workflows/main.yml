@@ -18,7 +18,7 @@ jobs:
         dotnet-version: 9.0.x
 
     - name: Restore
-      run: dotnet restore
+      run: dotnet restore Aoe2HubAPI/Aoe2HubAPI.csproj
 
     - name: Run Worker
-      run: dotnet run --project Aoe2HubAPI.csproj
+      run: dotnet run --project Aoe2HubAPI/Aoe2HubAPI.csproj
