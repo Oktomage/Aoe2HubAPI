@@ -2,7 +2,7 @@ name: Daily Snapshot
 
 on:
   schedule:
-    - cron: '0 3 * * *' # todo dia 03:00 UTC
+    - cron: '0 3 * * *'
   workflow_dispatch:
 
 jobs:
@@ -21,4 +21,4 @@ jobs:
       run: dotnet restore
 
     - name: Run Worker
-      run: dotnet run
+      run: dotnet run --project Aoe2HubAPI.csproj
