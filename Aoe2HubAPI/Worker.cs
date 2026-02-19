@@ -9,14 +9,19 @@ namespace Aoe2HubAPI
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            data.Connect_to_firesharp("admin");
-
-            while (!stoppingToken.IsCancellationRequested)
+            try
             {
-                await TakeSnapshot();
+                data.Connect_to_firesharp("admin");
 
-                // espera 24h
-                await Task.Delay(TimeSpan.FromHours(24), stoppingToken);
+                await TakeSnapshot();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro: {ex}");
+            }
+            finally
+            {
+                Environment.Exit(0);
             }
         }
 
@@ -27,7 +32,7 @@ namespace Aoe2HubAPI
 
             var snapshot = new DailySnapshot
             {
-                Date = DateTime.Now.ToString("dd-MM-yyyy HH:mm"),
+                Date = DateTime.Now.ToString("dd-MM-yyyy"),
                 Players = players,
                 Maps = maps
             };
